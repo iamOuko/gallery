@@ -3,8 +3,7 @@ from .models import Image
 
 # Create your views here.
 def index(request):
-    images = Image.objects.all()
-    return render(request, 'album/index.html', {'images':images})
+    return render(request, 'album/index.html')
 
 
 def search_image(request):
