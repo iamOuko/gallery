@@ -20,11 +20,18 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
-
-
-
             </ul>
+        </div>
+        <div class="col-sm-4 col-md-4 navbar-right">
 
+            <form class="navbar-form" role="search" action="{% url 'search_image' %}">
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search Image By Category" name="image">
+                </div>
+
+            </form>
+        </div>
         </div>
     </nav>
 </body>
