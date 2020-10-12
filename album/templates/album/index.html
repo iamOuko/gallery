@@ -4,19 +4,20 @@
 
 {% block content %}
 <h2 class="text-center text-primary">Welcome to My Gallery</h2>
-{% for image in images %}
 
-<article class="media content-section">
-    <img class="rounded-circle article-img" src="" alt="">
-    <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="#">{{ image.image }}</a>
-            <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+
+{% if images %}
+<div class="container">
+    <div class="row">
+        {% for image in images %}
+        <div>
+            <p>{{ image.name }}</p>
+            <p>Location {{ image.location}} </p>
+            <p>Category: {{ image.category}} </p>
+            <a>Copy Link</a>
         </div>
-        <h2><a class="article-title" href="">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.content }}</p>
+        {% endfor %}
     </div>
-</article>
-
-{% endfor %}
+</div>
+{% endif %}
 {% endblock %}
