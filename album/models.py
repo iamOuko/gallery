@@ -1,4 +1,6 @@
 from django.db import models
+import cloudinary
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -13,7 +15,7 @@ class Image(models.Model):
     description = models.TextField()
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='categories')
-    image = models.ImageField(upload_to = 'images/')
+    image = CloudinaryField('image')
 
     def save_image(self):
         self.save()
