@@ -8,21 +8,50 @@
 
 {% if images %}
 <div class="container">
-    <div class="card-deck">
+    <div class="row">
         {% for image in images %}
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">
-                {{ image.name }}
+        <div class="col-lg-4 col-md-6 col-sm-12 " style="margin-bottom: 20px;" data-toggle="modal"
+            data-target="#{{image.id}}">
+            <div class="card">
+                <div class="card-header">
+                    {{ image.name }}
+                </div>
+                <img src="{{image.image.url}}" class="card-img-top" alt="Image" style="width: 100%; height: 400px;">
+                <div class="card-body">
+                    <p>Location: {{ image.location.name }} </p>
+                    <p>Category: {{ image.category.name }} </p>
+                </div>
             </div>
-            <img src="{{image.image.url}}" class="card-img-top" alt="Image" style="width: 100%; height: 400px;">
-            <div class="card-body">
-                <p>Description: {{ image.category.description }} </p>
-                <p>Location {{ image.location.name }} </p>
-                <p>Category: {{ image.category.name }} </p>
+        </div>
+
+        <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content modalcard">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageheader">{{image.name}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{image.image.url}}" alt="{{image.name}}" class="img-fluid">
+                        <p class="text-center">{{image.description}}</p>
+                        <p class="image-location">Image Location ~ {{image.location.name}}</p>
+                        <p class="image-location">Image Category ~ {{image.category.name}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="form-control input-lg" type="text" value="{{image.image.url}}" readonly>
+                        <button type="button" class="btn btn-outline-success btn-sm" data-dismiss="modal">Close
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
 {% endif %}
+
+
 {% endblock %}

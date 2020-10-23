@@ -8,8 +8,15 @@ def index(request):
 
 
 def search_image(request):
-    if 'image' in request.GET and request.GET["image"]:
-        search_term = request.GET.get("image")
+    if 'location' in request.GET and request.GET["location"]:
+        search_term = request.GET.get("location")
+        images = Image.search_by_location(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'album/search.html',{"message":message, "images":images})
+
+    elif 'category' in request.GET and request.GET["category"]:
+        search_term = request.GET.get("category")
         images = Image.search_by_category(search_term)
         message = f"{search_term}"
 
